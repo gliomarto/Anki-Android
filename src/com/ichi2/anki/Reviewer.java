@@ -1792,7 +1792,10 @@ public class Reviewer extends AnkiActivity {
         if (AnkiDroidApp.SDK_VERSION > 7) {
             webView.setFocusableInTouchMode(false);
         }
-        AnkiDroidApp.getCompat().setScrollbarFadingEnabled(webView, mPrefFadeScrollbars);
+        //fix for NookST appearing compatible while it isn't
+        if (!Build.DEVICE.equals("zoom2")){
+            AnkiDroidApp.getCompat().setScrollbarFadingEnabled(webView, mPrefFadeScrollbars);
+        }
         Log.i(AnkiDroidApp.TAG, "Focusable = " + webView.isFocusable() + ", Focusable in touch mode = " + webView.isFocusableInTouchMode());
 
         return webView;
